@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+
+  "name": "Tabnames",
+  "description": "This extension allows tabs to be renamed.",
+  "background": { "scripts": ["background.js"] },
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "js": ["rename.js"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "http://*/*",
+    "https://*/*"
+  ],
+  
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  }
+}
