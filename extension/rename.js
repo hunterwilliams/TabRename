@@ -1,7 +1,8 @@
 function renameTitle(){
-	if (document.title != getTitleFromFormula(document.title))
+	if (document.title != getTitleFromFormula(trenamestarttitle))
 	{
-		document.title = getTitleFromFormula(document.title);
+		trenamestarttitle = document.title;
+		document.title = getTitleFromFormula(trenamestarttitle);
 		setTimeout(renameTitle,1000);
 	}
 }
@@ -18,10 +19,11 @@ function getPrefix(){
 function callback(message,sender,sendResponse){
 	console.log("set prefix:"+message);
 	trenameformula = message;
+	trenamestarttitle = document.title;
 	renameTitle();
 }
 
 trenameformula = "";
-trenamenewtitle = "";
+trenamestarttitle = "";
 chrome.runtime.onMessage.addListener(callback);
 console.log("renamer loaded");
