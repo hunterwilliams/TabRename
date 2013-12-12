@@ -15,7 +15,6 @@ function getPrefix(){
 	return trenameformula;
 }
 
-
 function callback(message,sender,sendResponse){
 	console.log("set prefix:"+message);
 	trenameformula = message;
