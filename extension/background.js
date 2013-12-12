@@ -1,16 +1,12 @@
-// Copyright (c) 2011 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 // Called when the url of a tab changes.
-function checkForPrefixes(tabId, changeInfo, tab) {
-	var prefix = matchPrefix(tab.url);
-	if (prefix != ""){
-	    chrome.tabs.sendMessage(tabId, prefix);
+function checkForFormula(tabId, changeInfo, tab) {
+	var formula = matchFormula(tab.url);
+	if (formula != ""){
+	    chrome.tabs.sendMessage(tabId, formula);
 	}
 };
 
-function matchPrefix(url){
+function matchFormula(url){
   var queryList = getQueryList();
   for (var i = 0; i < queryList.length; i++){
   	  var query = queryList[i];
@@ -19,7 +15,7 @@ function matchPrefix(url){
 
 	  var result = url.match(queryRegex);
 	  if (result == url){
-	  	return getPrefix(query);
+	  	return getFormula(query);
 	  }
 	}
 
@@ -30,18 +26,18 @@ function getQueryList(){
 	return Object.keys(rules);
 }
 
-function getPrefix(query){
-	return rules[query].prefix;
+function getFormula(query){
+	return rules[query].formula;
 }
 
-function makeRule(query, prefix){
+function makeRule(query, formula){
 	var r = {};
-	r.prefix = prefix;
+	r.formula = formula;
 	rules[query]=r;
 }
 
 var rules = {};
-makeRule("*mail*","Mail:");
+makeRule("*","Mail:{title}");
 
 // Listen for any changes to the URL of any tab.
-chrome.tabs.onUpdated.addListener(checkForPrefixes);
+chrome.tabs.onUpdated.addListener(checkForFormula);

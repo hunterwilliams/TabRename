@@ -1,24 +1,27 @@
 function renameTitle(){
-	if (document.title !== trenamenewtitle || document.title.indexOf(getPrefix()) != 0)
+	if (document.title != getTitleFromFormula(document.title))
 	{
-		trenamenewtitle = getPrefix()+document.title;
-		document.title = trenamenewtitle;
+		document.title = getTitleFromFormula(document.title);
 		setTimeout(renameTitle,1000);
 	}
 }
 
+function getTitleFromFormula(title){
+	return trenameformula.replace("{title}",title);
+}
+
 function getPrefix(){
-	return trenameprefix;
+	return trenameformula;
 }
 
 
 function callback(message,sender,sendResponse){
 	console.log("set prefix:"+message);
-	trenameprefix = message;
+	trenameformula = message;
 	renameTitle();
 }
 
-trenameprefix = "";
+trenameformula = "";
 trenamenewtitle = "";
 chrome.runtime.onMessage.addListener(callback);
 console.log("renamer loaded");
