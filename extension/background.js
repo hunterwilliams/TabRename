@@ -12,41 +12,38 @@ function checkForFormula(tabId, changeInfo, tab) {
 };
 
 function matchFormula(url){
-  var queryList = getQueryList();
-  for (var i = 0; i < queryList.length; i++){
-  	  var query = queryList[i];
-	  var queryPattern = query.replace(/\*/g, '.*');
+  var rules = getRules();
+  for (var i = 0; i < rules.length; i++){
+  	  var r = rules[i];
+	  var queryPattern = r.query.replace(/\*/g, '.*');
 	  var queryRegex = new RegExp(queryPattern, 'i');
 
 	  var result = url.match(queryRegex);
 	  if (result == url){
-	  	return getRule(query);
+	  	return r;
 	  }
 	}
 
   return 0;
 }
 
-function getQueryList(){
-	return Object.keys(rules);
-}
-
-function getRule(query){
-	return rules[query];
-}
-
 function makeRule(query, formula, css){
 	var r = {};
+	r.query = query;
 	r.formula = formula;
 	r.css = css;
-	rules[query]=r;
+	rules.push(r);
+}
+
+function getRule(index){
+	return rules[index];
 }
 
 function getRules(){
 	return rules;
 }
 
-var rules = {};
+var rules = [];
 makeRule("*mail*","Mail:{title}!","body{background-color:red;}");
 makeRule("*git*","Git related boo!","body{background-color:red !important;}");
 

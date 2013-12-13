@@ -11,26 +11,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function showRelevantRules(){
-  var queries = background.getQueryList();
+  var rules = background.getRules();
   $(RULES_DIV).html("");
   $(RULES_DIV).append("<table>")
-  for (var i = 0; i < queries.length; i++){
+  for (var i = 0; i < rules.length; i++){
     $(RULES_DIV).append("<tr>")
-    showRule(queries[i]);
+    showRule(i);
     $(RULES_DIV).append("</tr>")
   }
   $(RULES_DIV).append("</table");
 }
 
-function showRule(query){
-    var rule = background.getRule(query);
+function showRule(index){
+    var rule = background.getRule(index);
     var html = "";
     html += "<td>";
-    html += "<input class='text-edit' type='text' value='"+query+"'/>";
+    html += "<input class='text-edit' data-id='"+index+"' type='text' value='"+rule.query+"'/>";
     html += "</td><td>";
-    html += "<input class='text-edit' type='text' value='"+rule.formula+"'/>";
+    html += "<input class='text-edit' data-id='"+index+"' type='text' value='"+rule.formula+"'/>";
     html += "</td><td>";
-    html += "<input class='text-edit' type='text' value='"+rule.css+"'/>";
+    html += "<input class='text-edit' data-id='"+index+"' type='text' value='"+rule.css+"'/>";
     html += "</td>";
     $(RULES_DIV).append(html);
 }
