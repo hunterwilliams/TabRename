@@ -26,11 +26,11 @@ function showRule(query){
     var rule = background.getRule(query);
     var html = "";
     html += "<td>";
-    html += "<input type='text' value='"+query+"'/>";
+    html += "<input class='text-edit' type='text' value='"+query+"'/>";
     html += "</td><td>";
-    html += "<input type='text' value='"+rule.formula+"'/>";
+    html += "<input class='text-edit' type='text' value='"+rule.formula+"'/>";
     html += "</td><td>";
-    html += "<input type='text' value='"+rule.css+"'/>";
+    html += "<input class='text-edit' type='text' value='"+rule.css+"'/>";
     html += "</td>";
     $(RULES_DIV).append(html);
 }
