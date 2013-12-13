@@ -1,32 +1,36 @@
 var background;
-var RULES_DIV = "js_rules"
+var RULES_DIV = "#js_rules"
 
 document.addEventListener('DOMContentLoaded', function () {
-  console.log("dom loaded")
-  background = chrome.extension.getBackgroundPage();
-  showRelevantRules();
+  $( document ).ready(function() {
+    console.log("dom loaded")
+    background = chrome.extension.getBackgroundPage();
+    showRelevantRules();
+  });
 });
 
 
 function showRelevantRules(){
   var queries = background.getQueryList();
+  $(RULES_DIV).html("");
+  $(RULES_DIV).append("<table>")
   for (var i = 0; i < queries.length; i++){
+    $(RULES_DIV).append("<tr>")
     showRule(queries[i]);
+    $(RULES_DIV).append("</tr>")
   }
+  $(RULES_DIV).append("</table");
 }
 
 function showRule(query){
     var rule = background.getRule(query);
-    var textbox = document.createElement('input');
-    textbox.type = 'text';
-    textbox.setAttribute("value",query);
-    document.getElementById(RULES_DIV).appendChild(textbox);
-    var textbox2 = document.createElement('input');
-    textbox2.type = 'text';
-    textbox2.setAttribute("value",rule.formula);
-    document.getElementById(RULES_DIV).appendChild(textbox2);
-    var textbox3 = document.createElement('input');
-    textbox3.type = 'text';
-    textbox3.setAttribute("value",rule.css);
-    document.getElementById(RULES_DIV).appendChild(textbox3);
+    var html = "";
+    html += "<td>";
+    html += "<input type='text' value='"+query+"'/>";
+    html += "</td><td>";
+    html += "<input type='text' value='"+rule.formula+"'/>";
+    html += "</td><td>";
+    html += "<input type='text' value='"+rule.css+"'/>";
+    html += "</td>";
+    $(RULES_DIV).append(html);
 }

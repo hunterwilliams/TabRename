@@ -42,20 +42,13 @@ function makeRule(query, formula, css){
 	rules[query]=r;
 }
 
-function makeRule(query, formula){
-	var r = {};
-	r.formula = formula;
-	r.css = "";
-	rules[query]=r;
-}
-
 function getRules(){
 	return rules;
 }
 
 var rules = {};
 makeRule("*mail*","Mail:{title}!","body{background-color:red;}");
-makeRule("*git*","Git related boo!");
+makeRule("*git*","Git related boo!","body{background-color:red !important;}");
 
 // Listen for any changes to the URL of any tab.
 chrome.tabs.onUpdated.addListener(checkForFormula);
