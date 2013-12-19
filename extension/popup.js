@@ -20,17 +20,29 @@ function showRelevantRules(){
     $(RULES_DIV).append("</tr>")
   }
   $(RULES_DIV).append("</table");
+  $(".text-edit").focusout(saveRules);
 }
 
 function showRule(index){
     var rule = background.getRule(index);
     var html = "";
     html += "<td>";
-    html += "<input class='text-edit' data-id='"+index+"' type='text' value='"+rule.query+"'/>";
+    html += "<input id='rtext-query-"+index+"' class='text-edit' data-id='"+index+"' data-type='1' type='text' value='"+rule.query+"'/>";
     html += "</td><td>";
-    html += "<input class='text-edit' data-id='"+index+"' type='text' value='"+rule.formula+"'/>";
+    html += "<input id='rtext-form-"+index+"' class='text-edit' data-id='"+index+"' data-type='2' type='text' value='"+rule.formula+"'/>";
     html += "</td><td>";
-    html += "<input class='text-edit' data-id='"+index+"' type='text' value='"+rule.css+"'/>";
+    html += "<input id='rtext-css-"+index+"' class='text-edit' data-id='"+index+"' data-type='3' type='text' value='"+rule.css+"'/>";
     html += "</td>";
     $(RULES_DIV).append(html);
+}
+
+function saveRules(obj){
+  var $target = obj.target;
+  var index = $target.getAttribute("data-id");
+  var query = $("#rtext-query-"+index).val();
+  var form = $("#rtext-form-"+index).val();
+  var css = $("#rtext-css-"+index).val();
+  var rule = {query:query,formula:form,css:css};
+  console.log("Saving rule"+index,rule);
+  background.saveRule(index,rule);
 }

@@ -27,6 +27,11 @@ function matchFormula(url){
   return 0;
 }
 
+function saveRule(index, rule){
+	rules[index]=rule;
+	console.log("Saved role"+index,rule);
+}
+
 function makeRule(query, formula, css){
 	var r = {};
 	r.query = query;
