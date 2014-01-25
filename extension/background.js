@@ -30,6 +30,27 @@ function matchFormula(url){
 function saveRule(index, rule){
 	rules[index]=rule;
 	console.log("Saved role"+index,rule);
+	writeRules();
+}
+
+function writeRules(){
+	chrome.storage.sync.set({'rules': rules}, function(data) {
+    	if (data != null && data.rules != null && data.rules.size() == rules.size()){
+    		console.log("Rules saved");
+    	}
+    	else
+    	{
+    		console.log("Error saving");
+    	}
+  	});
+}
+
+function loadRules(){
+	chrome.storage.sync.get("rules", function(data){
+		if (data != null && data.rules != null){
+			rules = data.rules;
+		}
+	});
 }
 
 function makeRule(query, formula, css){
@@ -49,8 +70,10 @@ function getRules(){
 }
 
 var rules = [];
-makeRule("*mail*","Mail:{title}!","body{background-color:red;}");
+loadRules();
+/*makeRule("*mail*","Mail:{title}!","body{background-color:red;}");
 makeRule("*git*","Git related boo!","body{background-color:red !important;}");
-
+*/
 // Listen for any changes to the URL of any tab.
 chrome.tabs.onUpdated.addListener(checkForFormula);
+
