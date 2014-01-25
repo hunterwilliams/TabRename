@@ -25,6 +25,7 @@ function showRelevantRules(){
 
 function showRule(index){
     var rule = background.getRule(index);
+    var deleteButtonId = "rtext-delete-"+index;
     var html = "";
     html += "<td>";
     html += "<input id='rtext-query-"+index+"' class='text-edit' data-id='"+index+"' data-type='1' type='text' value='"+rule.query+"'/>";
@@ -33,7 +34,16 @@ function showRule(index){
     html += "</td><td>";
     html += "<input id='rtext-css-"+index+"' class='text-edit' data-id='"+index+"' data-type='3' type='text' value='"+rule.css+"'/>";
     html += "</td>";
+    html += "<td><div id='"+deleteButtonId+"' data-id='"+index+"' class='delete-rule'></div></td>";
+
     $(RULES_DIV).append(html);
+    $("#"+deleteButtonId).click(pressDelete);
+}
+
+function pressDelete(data){
+  console.dir(data);
+  background.deleteRule($("#"+data.target.id).attr("data-id"));
+  showRelevantRules();
 }
 
 function saveRules(obj){

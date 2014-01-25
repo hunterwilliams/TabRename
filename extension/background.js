@@ -27,6 +27,10 @@ function matchFormula(url){
   return 0;
 }
 
+function deleteRule(index){
+	rules = rules.splice(index,1);
+	writeRules();
+}
 function saveRule(index, rule){
 	rules[index]=rule;
 	console.log("Saved role"+index,rule);
@@ -35,12 +39,12 @@ function saveRule(index, rule){
 
 function writeRules(){
 	chrome.storage.sync.set({'rules': rules}, function(data) {
-    	if (data != null && data.rules != null && data.rules.size() == rules.size()){
-    		console.log("Rules saved");
+    	if (typeof runtime !== "undefined" && typeof runtime.lastError !== "undefined"){
+    		console.log("Error saving");
     	}
     	else
     	{
-    		console.log("Error saving");
+    		console.log("Save success");
     	}
   	});
 }
