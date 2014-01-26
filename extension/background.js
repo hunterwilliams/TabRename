@@ -56,13 +56,22 @@ function loadRules(){
 		}
 	});
 }
-
+function addRule(rule){
+	if (typeof rule != "undefined" && typeof rule.query != "undefined"
+		  && typeof rule.formula != "undefined" && typeof rule.css != "undefined"){
+		return rules.push(rule);
+	}
+	else
+	{
+		return -1;
+	}
+}
 function makeRule(query, formula, css){
 	var r = {};
 	r.query = query;
 	r.formula = formula;
 	r.css = css;
-	rules.push(r);
+	addRule(r);
 }
 
 function getRule(index){

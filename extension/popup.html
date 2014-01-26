@@ -12,6 +12,7 @@
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         border-color: rgba(0,0,0,0);
+        border-width:1px;
       }
 
       .text-edit:hover{
@@ -26,6 +27,14 @@
         display: block;
       }
 
+      .add-rule, .save-rule{
+        width:20px;
+        height:20px;
+        background-color: blue;
+        display: block;
+        float:right;
+      }
+
     </style>
     <script src="jquery-2.0.3.min.js"></script>
     <script src="popup.js"></script>
@@ -33,6 +42,7 @@
   <body>
     <div id="js_rules">
     </div>
+    <span id='j-add-rule' class='add-rule'></span>
   </body>
 </html>
 
