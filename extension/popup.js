@@ -64,6 +64,7 @@ function pressSave(data){
   var index = $("#"+data.target.id).attr("data-id");
   var rule = getRuleByIndex(index);
   background.addRule(rule);
+  background.writeRules();
   showRelevantRules();
 }
 
