@@ -69,8 +69,9 @@ function pressSave(data){
 }
 
 function pressDelete(data){
-  console.dir(data);
-  background.deleteRule($("#"+data.target.id).attr("data-id"));
+  var ruleId = $("#"+data.target.id).attr("data-id");
+  console.log("deleting rule:"+ruleId);
+  background.deleteRule(ruleId);
   showRelevantRules();
 }
 

@@ -28,7 +28,7 @@ function matchFormula(url){
 }
 
 function deleteRule(index){
-	rules = rules.splice(index,1);
+	rules.splice(index,1);
 	writeRules();
 }
 function saveRule(index, rule){
