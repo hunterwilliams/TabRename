@@ -1,9 +1,16 @@
 function renameTitle(){
 	if (document.title != getTitleFromFormula(trenamestarttitle))
 	{
-		trenamestarttitle = document.title;
-		document.title = getTitleFromFormula(trenamestarttitle);
-		setTimeout(renameTitle,1000);
+		if (document.title.indexOf(getTitleFromFormula("")) == 0){
+			console.log("done");
+		}
+		else
+		{
+			trenamestarttitle = document.title;
+			document.title = getTitleFromFormula(trenamestarttitle);
+			setTimeout(renameTitle,1000);
+		}
+		
 	}
 }
 
