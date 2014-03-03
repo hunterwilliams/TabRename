@@ -1,10 +1,11 @@
 {
   "manifest_version": 2,
 
-  "name": "Tabnames",
-  "description": "This extension allows tabs to be renamed.",
+  "name": "TabStyles",
+  "default_locale": "en",
+  "description": "Rename & Style Tabs",
   "background": { "scripts": ["background.js"] },
-  "version": "1.0",
+  "version": "0.1",
 
   "content_scripts": [
     {
@@ -19,6 +20,8 @@
     "http://*/*",
     "https://*/*"
   ],
+
+  "offline_enabled": true,
   
   "browser_action": {
     "default_icon": "icon.png",

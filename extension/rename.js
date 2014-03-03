@@ -6,6 +6,7 @@ function renameTitle(){
 		originalTitle = currentTitle;
 		document.title = getTitleFromFormula(currentTitle);
 		checkTitleAgain(1);
+		checkTitleAgain(5);
 	}
 	else
 	{
