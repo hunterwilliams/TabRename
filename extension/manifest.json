@@ -2,7 +2,6 @@
   "manifest_version": 2,
 
   "name": "TabStyles",
-  "default_locale": "en",
   "description": "Rename & Style Tabs",
   "background": { "scripts": ["background.js"] },
   "version": "0.1",
