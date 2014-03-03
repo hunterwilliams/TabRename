@@ -1,8 +1,9 @@
 var background;
-var RULES_DIV = "#js_rules"
+var RULES_DIV = "#js_rules";
 var ADD_RULE_BUTTON = "#j-add-rule";
 var RULES_TABLE = "#js-rules-table";
-var DELETE_BUTTON_CLASS = ".delete-rule"
+var RULES_TABLE_BODY = "#js-rules-table-body";
+var DELETE_BUTTON_CLASS = ".delete-rule";
 
 document.addEventListener('DOMContentLoaded', function () {
   $( document ).ready(function() {
@@ -15,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function showRelevantRules(){
   var rules = background.getRules();
-  var html = "<table id='js-rules-table'><tr><th><span id='j-add-rule' class='add-rule'></span></th><th>Matches</th><th>Title</th><th>CSS</th></tr>";
+  var html = "<table id='js-rules-table'><tbody id='js-rules-table-body'><tr><th><span id='j-add-rule' class='add-rule'></span></th><th>Matches</th><th>Title</th><th>CSS</th></tr>";
   for (var i = 0; i < rules.length; i++){
     html+= "<tr>";
     html+= showRule(i);
     html+= "</tr>";
   }
-  html+= "</table";
+  html+= "</tbody></table>";
   $(RULES_DIV).html(html);
   $(DELETE_BUTTON_CLASS).click(pressDelete);
   $(ADD_RULE_BUTTON).click(pressAdd);
@@ -48,16 +49,15 @@ function pressAdd(){
   var html = "";
   var index = background.getRules().length;
   var saveButtonId = "rtext-save-"+index;
-    html += "<td><div id='"+saveButtonId+"' data-id='"+index+"' class='save-rule'></td>";
-  html += "<td>";
+    html += "<tr><td><div id='"+saveButtonId+"' data-id='"+index+"' class='save-rule'></td>";
+    html += "<td>";
     html += "<input id='rtext-query-"+index+"' class='text-edit' data-id='"+index+"' data-type='1' type='text' value='new rule'/>";
     html += "</td><td>";
     html += "<input id='rtext-form-"+index+"' class='text-edit' data-id='"+index+"' data-type='2' type='text'/>";
     html += "</td><td>";
     html += "<input id='rtext-css-"+index+"' class='text-edit' data-id='"+index+"' data-type='3' type='text'/>";
-    html += "</td>";
-   
-  $(RULES_TABLE).append(html);
+    html += "</td></tr>";
+  $(RULES_TABLE_BODY).append(html);
   $("#"+saveButtonId).click(pressSave);
 }
 
