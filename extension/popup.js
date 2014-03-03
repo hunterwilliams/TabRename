@@ -1,7 +1,6 @@
 var background;
 var RULES_DIV = "#js_rules";
 var ADD_RULE_BUTTON = "#j-add-rule";
-var RULES_TABLE = "#js-rules-table";
 var RULES_TABLE_BODY = "#js-rules-table-body";
 var DELETE_BUTTON_CLASS = ".delete-rule";
 
@@ -16,14 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function showRelevantRules(){
   var rules = background.getRules();
-  var html = "<table id='js-rules-table'><tbody id='js-rules-table-body'><tr><th><span id='j-add-rule' class='add-rule'></span></th><th>Matches</th><th>Title</th><th>CSS</th></tr>";
+  var html = "<tr><th><span id='j-add-rule' class='add-rule'></span></th><th>Matches</th><th>Title</th><th>CSS</th></tr>";
   for (var i = 0; i < rules.length; i++){
     html+= "<tr>";
     html+= showRule(i);
     html+= "</tr>";
   }
-  html+= "</tbody></table>";
-  $(RULES_DIV).html(html);
+  $(RULES_TABLE_BODY).html(html);
   $(DELETE_BUTTON_CLASS).click(pressDelete);
   $(ADD_RULE_BUTTON).click(pressAdd);
   $(".text-edit").focusout(saveRules);
