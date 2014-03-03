@@ -6,7 +6,6 @@ var DELETE_BUTTON_CLASS = ".delete-rule";
 
 document.addEventListener('DOMContentLoaded', function () {
   $( document ).ready(function() {
-    console.log("dom loaded")
     background = chrome.extension.getBackgroundPage();
     showRelevantRules();
   });
