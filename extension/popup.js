@@ -16,9 +16,7 @@ function showRelevantRules(){
   var rules = background.getRules();
   var html = "<tr><th><span id='j-add-rule' class='add-rule'></span></th><th>Matches</th><th>Title</th><th>CSS</th></tr>";
   for (var i = 0; i < rules.length; i++){
-    html+= "<tr>";
     html+= showRule(i);
-    html+= "</tr>";
   }
   $(RULES_TABLE_BODY).html(html);
   $(DELETE_BUTTON_CLASS).click(pressDelete);
@@ -29,7 +27,7 @@ function showRelevantRules(){
 function showRule(index){
     var rule = background.getRule(index);
     var deleteButtonId = "rtext-delete-"+index;
-    var html = "";
+    var html = "<tr>";
     html += "<td><div id='"+deleteButtonId+"' data-id='"+index+"' class='delete-rule'></div></td>";
     html += "<td>";
     html += "<input id='rtext-query-"+index+"' class='text-edit' data-id='"+index+"' data-type='1' type='text' value='"+rule.query+"'/>";
@@ -37,7 +35,7 @@ function showRule(index){
     html += "<input id='rtext-form-"+index+"' class='text-edit' data-id='"+index+"' data-type='2' type='text' value='"+rule.formula+"'/>";
     html += "</td><td>";
     html += "<input id='rtext-css-"+index+"' class='text-edit' data-id='"+index+"' data-type='3' type='text' value='"+rule.css+"'/>";
-    html += "</td>";
+    html += "</td></tr>";
 
     return html;
 }
