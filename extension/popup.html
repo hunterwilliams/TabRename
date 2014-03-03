@@ -3,9 +3,36 @@
   <head>
     <title>TabStyles</title>
     <style>
+          *, *:before, *:after {
+        -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+       }
       body {
         min-width: 357px;
         overflow-x: hidden;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      tr:first-child{
+        border-color:rgb(139, 139, 250)!important;
+        background-color: rgb(255,255,255)!important;
+      }
+      tr{
+        border-top-width: 1px;
+        border-bottom-width: 1px;
+        border-left-width: 0px;
+        border-right-width: 0px;
+        border-color: rgba(228, 228, 228, 0.6);
+        border-style: solid;
+      }
+      tr:hover{
+        background-color: rgba(255, 255, 226, 0.63);
+      }
+      tr:hover .delete-rule{
+        visibility: visible;
+      }
+      .delete-rule{
+        visibility: hidden;
       }
 
       .text-edit{
@@ -42,7 +69,6 @@
   <body>
     <div id="js_rules">
     </div>
-    <span id='j-add-rule' class='add-rule'></span>
   </body>
 </html>
 

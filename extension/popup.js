@@ -2,6 +2,7 @@ var background;
 var RULES_DIV = "#js_rules"
 var ADD_RULE_BUTTON = "#j-add-rule";
 var RULES_TABLE = "#js-rules-table";
+var DELETE_BUTTON_CLASS = ".delete-rule"
 
 document.addEventListener('DOMContentLoaded', function () {
   $( document ).ready(function() {
@@ -14,14 +15,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function showRelevantRules(){
   var rules = background.getRules();
-  $(RULES_DIV).html("");
-  $(RULES_DIV).append("<table id='js-rules-table'>")
+  var html = "<table id='js-rules-table'><tr><th><span id='j-add-rule' class='add-rule'></span></th><th>Matches</th><th>Title</th><th>CSS</th></tr>";
   for (var i = 0; i < rules.length; i++){
-    $(RULES_DIV).append("<tr>")
-    showRule(i);
-    $(RULES_DIV).append("</tr>")
+    html+= "<tr>";
+    html+= showRule(i);
+    html+= "</tr>";
   }
-  $(RULES_DIV).append("</table");
+  html+= "</table";
+  $(RULES_DIV).html(html);
+  $(DELETE_BUTTON_CLASS).click(pressDelete);
   $(ADD_RULE_BUTTON).click(pressAdd);
   $(".text-edit").focusout(saveRules);
 }
@@ -30,6 +32,7 @@ function showRule(index){
     var rule = background.getRule(index);
     var deleteButtonId = "rtext-delete-"+index;
     var html = "";
+    html += "<td><div id='"+deleteButtonId+"' data-id='"+index+"' class='delete-rule'></div></td>";
     html += "<td>";
     html += "<input id='rtext-query-"+index+"' class='text-edit' data-id='"+index+"' data-type='1' type='text' value='"+rule.query+"'/>";
     html += "</td><td>";
@@ -37,16 +40,15 @@ function showRule(index){
     html += "</td><td>";
     html += "<input id='rtext-css-"+index+"' class='text-edit' data-id='"+index+"' data-type='3' type='text' value='"+rule.css+"'/>";
     html += "</td>";
-    html += "<td><div id='"+deleteButtonId+"' data-id='"+index+"' class='delete-rule'></div></td>";
 
-    $(RULES_DIV).append(html);
-    $("#"+deleteButtonId).click(pressDelete);
+    return html;
 }
 
 function pressAdd(){
   var html = "";
   var index = background.getRules().length;
   var saveButtonId = "rtext-save-"+index;
+    html += "<td><div id='"+saveButtonId+"' data-id='"+index+"' class='save-rule'></td>";
   html += "<td>";
     html += "<input id='rtext-query-"+index+"' class='text-edit' data-id='"+index+"' data-type='1' type='text' value='new rule'/>";
     html += "</td><td>";
@@ -54,7 +56,7 @@ function pressAdd(){
     html += "</td><td>";
     html += "<input id='rtext-css-"+index+"' class='text-edit' data-id='"+index+"' data-type='3' type='text'/>";
     html += "</td>";
-    html += "<td><div id='"+saveButtonId+"' data-id='"+index+"' class='save-rule'></td>";
+   
   $(RULES_TABLE).append(html);
   $("#"+saveButtonId).click(pressSave);
 }
