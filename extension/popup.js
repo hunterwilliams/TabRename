@@ -28,7 +28,7 @@ function showRule(index){
     var rule = background.getRule(index);
     var deleteButtonId = "rtext-delete-"+index;
     var html = "<tr>";
-    html += "<td><div id='"+deleteButtonId+"' data-id='"+index+"' class='delete-rule'></div></td>";
+    html += "<td><div id='"+deleteButtonId+"' data-id='"+index+"' class='delete button'></div></td>";
     html += "<td>";
     html += "<input id='rtext-query-"+index+"' class='text-edit' data-id='"+index+"' data-type='1' type='text' value='"+rule.query+"'/>";
     html += "</td><td>";
