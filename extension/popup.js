@@ -22,6 +22,8 @@ function showRelevantRules(){
   $(DELETE_BUTTON_CLASS).click(pressDelete);
   $(ADD_RULE_BUTTON).click(pressAdd);
   $(".text-edit").focusout(saveRules);
+  $(RULES_TABLE_BODY).removeClass("add-rule");
+
 }
 
 function showRule(index){
@@ -54,6 +56,8 @@ function pressAdd(){
     html += "</td></tr>";
   $(RULES_TABLE_BODY).append(html);
   $("#"+saveButtonId).click(pressSave);
+  $(RULES_TABLE_BODY).addClass("add-rule");
+
 }
 
 function pressSave(data){
