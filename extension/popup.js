@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function showRelevantRules(){
   var rules = background.getRules();
-  var html = "<tr><th><span id='j-add-rule' class='add-rule'></span></th><th>Matches</th><th>Title</th><th>CSS</th></tr>";
+  var html = "<tr><th><span id='j-add-rule' class='button plus'></span></th><th>Matches</th><th>Title</th><th>CSS</th></tr>";
   for (var i = 0; i < rules.length; i++){
     html+= showRule(i);
   }
