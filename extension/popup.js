@@ -2,7 +2,7 @@ var background;
 var RULES_DIV = "#js_rules";
 var ADD_RULE_BUTTON = "#j-add-rule";
 var RULES_TABLE_BODY = "#js-rules-table-body";
-var DELETE_BUTTON_CLASS = ".delete-rule";
+var DELETE_BUTTON_CLASS = ".delete";
 
 document.addEventListener('DOMContentLoaded', function () {
   $( document ).ready(function() {
@@ -44,7 +44,7 @@ function pressAdd(){
   var html = "";
   var index = background.getRules().length;
   var saveButtonId = "rtext-save-"+index;
-    html += "<tr><td><div id='"+saveButtonId+"' data-id='"+index+"' class='save-rule'></td>";
+    html += "<tr><td><div id='"+saveButtonId+"' data-id='"+index+"' class='save button'></td>";
     html += "<td>";
     html += "<input id='rtext-query-"+index+"' class='text-edit' data-id='"+index+"' data-type='1' type='text' value='new rule'/>";
     html += "</td><td>";
