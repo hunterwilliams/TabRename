@@ -2,7 +2,8 @@
   "manifest_version": 2,
 
   "name": "TabStyles",
-  "description": "Rename & Style Tabs",
+  "short_name" : "TabStyles",
+  "description": "Style & Rename Tabs",
   "background": { "scripts": ["background.js"] },
   "version": "0.1",
 
